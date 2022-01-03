@@ -31,6 +31,14 @@ type EncryptedKey struct {
 	encryptedMPI1, encryptedMPI2 encoding.Field
 }
 
+func (p *EncryptedKey) GetEncryptedMPI1() []byte {
+    return p.encryptedMPI1.Bytes()
+}
+
+func (p *EncryptedKey) GetEncryptedMPI2() []byte {
+    return p.encryptedMPI2.Bytes()
+}
+
 func (e *EncryptedKey) parse(r io.Reader) (err error) {
 	var buf [10]byte
 	_, err = readFull(r, buf[:])
