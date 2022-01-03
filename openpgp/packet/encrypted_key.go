@@ -39,6 +39,14 @@ type EncryptedKey struct {
 	encryptedSession             []byte            // used for x25519 and x448
 }
 
+func (p *EncryptedKey) GetEncryptedMPI1() []byte {
+    return p.encryptedMPI1.Bytes()
+}
+
+func (p *EncryptedKey) GetEncryptedMPI2() []byte {
+    return p.encryptedMPI2.Bytes()
+}
+
 func (e *EncryptedKey) parse(r io.Reader) (err error) {
 	var buf [8]byte
 	_, err = readFull(r, buf[:versionSize])
